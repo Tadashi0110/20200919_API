@@ -1,0 +1,146 @@
+/* ----- 背景用の動画ファイル ----- */
+#bg-video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top:0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
+    z-index: -100;
+    background: url(poster.jpg) no-repeat;
+    background-size: cover;
+}
+/* ----- 背景の上に表示させたいコンテンツ ----- */
+.header-title{
+    position: relative; /*必ず必要*/
+    z-index: 2; /*必ず必要*/
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    margin: auto;
+   }
+/* ----- グラデーションオーバーレイ -----
+.wrap{
+    height: 100vh;
+    background: linear-gradient(-45deg, rgba(4, 114, 124, 0.4), rgba(17, 66, 99, 0.6));
+   } */
+/* .button{ */
+.buttonall::after{
+    margin: auto;
+    display: grid;
+    margin-top: 50px;
+}
+
+.button1 {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+.button1:hover {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+
+  .button2 {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+.button2:hover {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+
+  .button3 {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+.button3:hover {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+
+
+
+input#btn1 {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #ff8e0c;
+    color: #000000;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #627295;
+    border-radius: 3px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+input#btn1:active  {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+
+input#btn2 {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #f6fa0f;
+    color: #000000;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #627295;
+    border-radius: 3px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+input#btn2:active  {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+
+input#btn3 {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #00f36d;
+    color: #000000;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #627295;
+    border-radius: 3px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+input#btn3:active  {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+
+  .buttonall {
+    margin-left: 100px;
+    margin-top: 30px;
+}
+h1 {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #eaeaea;
+    font-family: BebasNeue;
+    font-size: 22px;
+    font-weight: normal;
+    color: #111;
+    text-decoration: none;
+    letter-spacing: 4px;
+    margin-left: 30px;
+    margin-right: 30px;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>新世界串かつMAP</title>
+</head>
+<body>
+<div>
+   OSAKA KUSHIKATU MAP<input hidden id="key" value="c9ce461faf2d46fb931121a917db94d8" type="text" size="45">
+    <!-- <input type="button" id="btn" value="串かつを検索"><br> -->
+    <!-- 緯度lat: <input type="text" id="lat" value=""> 
+    経度lon: <input type="text" id="lon" value="">  -->
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnlCFeyPj_75vWlnUlCB72A9pjiidTzXR6PRPWl8lVvVSghHgTYsQO_BKmldKE8P' async defer></script>
+<script src="BmapQuery.js"></script>
+
+<!-- MAP Geolocation -->
+<!-- <h2>MAP:Geolocation</h2> -->
+<style>html,body{height:100%;}body{padding:0;margin:0;}h1{padding:0;margin:0;font-size:50%;}</style>
+<div id="mymap" style="width:80%;height: 90%;float: left;"></div>
+
+<script>
+// <!-- 1. Instance -->
+function GetMap(){
+    const map = new Bmap("#mymap");
+
+    //------------------------------------------------------------------------
+    //2. Display Map load, aerial,canvasDark,canvasLight,birdseye,grayscale,streetside
+    //------------------------------------------------------------------------
+    map.startMap(34.651546, 135.505920, "canvasLight", 16); //The place is Bellevue.
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    // const title1 = "八重勝";
+    // const discript1 = '<div style="width:200px;color:red;">営業時間：10:30~20:30<br>定休日：木曜日</div>';
+    // const actions1 =
+    //     [
+    //         //1.action
+    //         {
+    //             label: '店舗URL',
+    //             eventHandler: function () { //function
+    //              window.open('https://tabelog.com/osaka/A2701/A270206/27000443/', '_blank'); // 新しいタブを開き、ページを表示
+    //             }
+    //         },
+    //     ];
+    // //Create Event to Infobox
+    // map.onInfobox(34.649695,135.506115, title1, discript1, actions1);
+
+    const options = [];
+    options[0]={
+        "lat":34.651101,
+        "lon":135.505699,
+        "title":"横綱 通天閣店",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.35<br><a href="https://tabelog.com/osaka/A2701/A270206/27066939/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/64191/150x150_square_64191200.jpg" alt=""></a>',
+        "show":false
+    };
+
+
+    options[1]={
+        "lat":34.652921,
+        "lon":135.506463,
+        "title":"串かつ 花道",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.44<br><a href="https://tabelog.com/osaka/A2701/A270206/27052767/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/32533/150x150_square_32533639.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[2]={
+        "lat":34.651868,
+        "lon":135.505837,
+        "title":"新世界 串カツいっとく",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.33<br><a href="https://tabelog.com/osaka/A2701/A270202/27060993/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/103921/150x150_square_103921921.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[3]={
+        "lat":34.652379,
+        "lon":135.506224,
+        "title":"近江屋 本店",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.49<br><a href="https://tabelog.com/osaka/A2701/A270206/27005050/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/126942/150x150_square_126942058.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[4]={
+        "lat":34.649695,
+        "lon":135.506115,
+        "title":"八重勝",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐⭐3.76<br><a href="https://tabelog.com/osaka/A2701/A270206/27000443/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/135929/150x150_square_135929530.jpg" alt=""></a>',
+        "show":false
+    };
+
+
+
+
+    //----------------------------------------------------
+    //4. Switch infoboxs
+    //   infoboxLayers(options, true); //true=one, false=Multiple
+    //----------------------------------------------------
+    map.infoboxLayers(options,true);
+
+    map.geolocation(function(data){
+        const lat = data.coords.latitude;
+
+        const lon = data.coords.longitude;
+
+        //pin
+        map.pin(lat,lon,"#ff0000");
+    
+    });
+    //     $('#lat').val(lat);
+    //     $('#lon').val(lon);
+
+}
+
+</script>
+</body>
+</html>

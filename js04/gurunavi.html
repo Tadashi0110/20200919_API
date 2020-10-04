@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>うまいもんAPI</title>
+</head>
+<body>
+<div>
+    アクセスキーを入力<input id="key" value="c9ce461faf2d46fb931121a917db94d8" type="text" size="45">
+    <input type="button" id="btn" value="検索"><br>
+    緯度lat: <input type="text" id="lat" value=""> 
+    経度lon: <input type="text" id="lon" value=""> 
+
+</div>
+<table id="table">
+    <tr>
+        <th>店舗名</th>
+        <th>営業時間</th>
+        <th>緯度</th>
+        <th>経度</th>
+
+    </tr>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnlCFeyPj_75vWlnUlCB72A9pjiidTzXR6PRPWl8lVvVSghHgTYsQO_BKmldKE8P' async defer></script>
+<script src="BmapQuery.js"></script>
+
+<!-- MAP Geolocation -->
+<h2>MAP:Geolocation</h2>
+<style>html,body{height:100%;}body{padding:0;margin:0;}h1{padding:0;margin:0;font-size:50%;}</style>
+<div id="mymap" style="width:80%;height: 70%;float: left;"></div>
+
+<script>
+// <!-- 現在地の取得 -->
+function GetMap(){
+    const map = new Bmap("#mymap");
+
+    map.geolocation(function(data){
+        const lat = data.coords.latitude;
+        const lon = data.coords.longitude;
+
+        //MAP
+        map.startMap(lat,lon,"load",14);
+        //pin
+        map.pin(lat,lon,"#ff0000");
+
+        $('#lat').val(lat);
+        $('#lon').val(lon);
+
+    //----------------------------------------------------
+    //3. Add Pushpin-Icon
+    // pinIcon(lat, lon, icon, scale, anchor_x, anchor_y);
+    //----------------------------------------------------
+
+    const slat = $('#shop_lat').val();
+    const slon = $('#shop_lon').val();
+    map.pin(slat,slon,"#ff0000");
+
+    });
+}
+
+
+//*****************************************************
+// Click Event
+// ぐるなびAPIへデータRequest → APIサーバーからresponseデータ取得 
+//*****************************************************
+$("#btn").on("click",function(){
+    // 送信データをobject変数で用意
+    const data ={
+       keyid:$("#key").val(),
+       latitude:$("#lat").val(),
+       longitude:$("#lon").val(),
+       range: 5
+    };
+
+
+
+
+//Ajax（非同期通信）
+    axios.get('https://api.gnavi.co.jp/RestSearchAPI/v3/', {
+        params:data
+    })
+    .then(function (response) {
+        //データ受信成功！！showData関数にデータを渡す
+        showData(response.data);
+    }).catch(function (error) {
+        console.log(error);//通信Error
+    }).then(function () {
+        //console.log("Last");//通信OK/Error後に処理を必ずさせたい場合
+    });
+});
+
+//*****************************************************
+//ぐるなびデータ表示処理
+//*****************************************************
+function showData(data){
+    //データ確認用
+    console.log(data.rest);
+
+    //データを繰り返し処理で取得
+    const len  = data.rest.length; //データ数を取得
+    for( let i=0; i<len; i++){
+        $("#table").append('<tr><td>' + data.rest[i].name + '</td><td>' + data.rest[i].opentime + '</td><td id="shop_lat">'+data.rest[i].latitude+'</td><td id="shop_lon">'+data.rest[i].longitude+'</td></tr>');
+    };
+}
+</script>
+</body>
+</html>

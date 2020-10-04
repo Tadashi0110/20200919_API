@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>うまいもんAPI</title>
+</head>
+<body>
+<div>
+    食べたいものを選択<input hidden id="key" value="c9ce461faf2d46fb931121a917db94d8" type="text" size="45">
+    <input type="button" id="btn" value="串かつを検索"><br>
+    <!-- 緯度lat: <input type="text" id="lat" value=""> 
+    経度lon: <input type="text" id="lon" value="">  -->
+
+</div>
+<!-- <table id="table">
+    <tr>
+        <th>店舗名</th>
+        <th>営業時間</th>
+        <th>緯度</th>
+        <th>経度</th>
+
+    </tr>
+</table> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnlCFeyPj_75vWlnUlCB72A9pjiidTzXR6PRPWl8lVvVSghHgTYsQO_BKmldKE8P' async defer></script>
+<script src="BmapQuery.js"></script>
+
+<!-- MAP Geolocation -->
+<!-- <h2>MAP:Geolocation</h2> -->
+<style>html,body{height:100%;}body{padding:0;margin:0;}h1{padding:0;margin:0;font-size:50%;}</style>
+<div id="mymap" style="width:80%;height: 90%;float: left;"></div>
+
+<script>
+// <!-- 1. Instance -->
+function GetMap(){
+    const map = new Bmap("#mymap");
+
+    //------------------------------------------------------------------------
+    //2. Display Map
+    //------------------------------------------------------------------------
+    map.startMap(34.651546, 135.505920, "load", 16); //The place is Bellevue.
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    const title1 = "八重勝";
+    const discript1 = '<div style="width:200px;color:red;">営業時間：10:30~20:30<br>定休日：木曜日</div>';
+    const actions1 =
+        [
+            //1.action
+            {
+                label: '店舗URL',
+                eventHandler: function () { //function
+                 window.open('https://tabelog.com/osaka/A2701/A270206/27000443/', '_blank'); // 新しいタブを開き、ページを表示
+                }
+            },
+        ];
+    //Create Event to Infobox
+    map.onInfobox(34.649695,135.506115, title1, discript1, actions1);
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    const title2 = "近江屋 本店";
+    const discript2 = '<div style="width:200px;color:red;">営業時間:月-水、金、土：12:00～21:00<br>日曜、祝日：11:00～ 21:00<br>定休日：木曜日</div>';
+    const actions2 =
+        [
+            //1.action
+            {
+                label: '店舗URL',
+                eventHandler: function () { //function
+                 window.open('https://tabelog.com/osaka/A2701/A270206/27005050/', '_blank'); // 新しいタブを開き、ページを表示
+                }
+            },
+        ];
+    //Create Event to Infobox
+    map.onInfobox(34.652379,135.506224, title2, discript2, actions2);
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    const title3 = "いっとく";
+    const discript3 = '<div style="width:200px;color:red;">営業時間:【月～木】11：00～22：30<br>【金・祝前日】18：00～23：00<br>定休日：火曜日</div>';
+    const actions3 =
+        [
+            //1.action
+            {
+                label: '店舗URL',
+                eventHandler: function () { //function
+                 window.open('https://tabelog.com/osaka/A2701/A270206/27083514/', '_blank'); // 新しいタブを開き、ページを表示
+                }
+            },
+        ];
+    //Create Event to Infobox
+    map.onInfobox(34.651868,135.505837, title3, discript3, actions3);
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    const title4 = "串かつ 花道";
+    const discript4 = '<div style="width:200px;color:red;">営業時間:12:00~23:30<br>定休日：火曜日</div>';
+    const actions4 =
+        [
+            //1.action
+            {
+                label: '店舗URL',
+                eventHandler: function () { //function
+                 window.open('https://tabelog.com/osaka/A2701/A270206/27052767/', '_blank'); // 新しいタブを開き、ページを表示
+                }
+            },
+        ];
+    //Create Event to Infobox
+    map.onInfobox(34.652921,135.506463, title4, discript4, actions4);
+
+    //----------------------------------------------------
+    //3. Add Infobox-Actions(Event)
+    // map.onInfobox(lat, lon, "title","description", "text or html");
+    //----------------------------------------------------
+    //Configuration
+    const title5 = "横綱 通天閣店";
+    const discript5 = '<div style="width:200px;color:red;">営業時間:【月～木】11：00～23:00<br>定休日：無休</div>';
+    const actions5 =
+        [
+            //1.action
+            {
+                label: '店舗URL',
+                eventHandler: function () { //function
+                 window.open('https://tabelog.com/osaka/A2701/A270206/27066939/', '_blank'); // 新しいタブを開き、ページを表示
+                }
+            },
+        ];
+    //Create Event to Infobox
+    map.onInfobox(34.651101,135.505699, title5, discript5, actions5);
+
+
+}
+
+    // map.geolocation(function(data){
+    //     const lat = data.coords.latitude;
+
+    //     const lon = data.coords.longitude;
+
+    //     //MAP
+    //     map.startMap(lat,lon,"load",14);
+    //     //pin
+    //     map.pin(lat,lon,"#ff0000");
+
+    //     $('#lat').val(lat);
+    //     $('#lon').val(lon);
+
+    // //----------------------------------------------------
+    // //3. Add Pushpin-Icon
+    // // pinIcon(lat, lon, icon, scale, anchor_x, anchor_y);
+    // //----------------------------------------------------
+
+    // const slat = $('#shop_lat').val();
+    // const slon = $('#shop_lon').val();
+    // map.pin(slat,slon,"#ff0000");
+
+    // });
+
+
+
+
+// //*****************************************************
+// // Click Event
+// // ぐるなびAPIへデータRequest → APIサーバーからresponseデータ取得 
+// //*****************************************************
+// $("#btn").on("click",function(){
+//     // 送信データをobject変数で用意
+//     const data ={
+//        keyid:$("#key").val(),
+//        latitude:$("#lat").val(),
+//        longitude:$("#lon").val(),
+//        range: 5
+//     };
+    
+// //Ajax（非同期通信）
+//     axios.get('https://api.gnavi.co.jp/RestSearchAPI/v3/', {
+//         params:data
+//     })
+//     .then(function (response) {
+//         //データ受信成功！！showData関数にデータを渡す
+//         showData(response.data);
+//     }).catch(function (error) {
+//         console.log(error);//通信Error
+//     }).then(function () {
+//         //console.log("Last");//通信OK/Error後に処理を必ずさせたい場合
+//     });
+// });
+
+// //*****************************************************
+// //ぐるなびデータ表示処理
+// //*****************************************************
+// function showData(data){
+//     //データ確認用
+//     console.log(data.rest);
+
+//     //データを繰り返し処理で取得
+//     const len  = data.rest.length; //データ数を取得
+//     for( let i=0; i<len; i++){
+//         $("#table").append('<tr><td>' + data.rest[i].name + '</td><td>' + data.rest[i].opentime + '</td><td id="shop_lat">'+data.rest[i].latitude+'</td><td id="shop_lon">'+data.rest[i].longitude+'</td></tr>');
+//     };
+
+
+
+
+// }
+</script>
+</body>
+</html>
