@@ -7,9 +7,7 @@
 <body>
 <div>
    CAFE MAP<input hidden id="key" value="c9ce461faf2d46fb931121a917db94d8" type="text" size="45">
-    <!-- <input type="button" id="btn" value="串かつを検索"><br> -->
-    <!-- 緯度lat: <input type="text" id="lat" value=""> 
-    経度lon: <input type="text" id="lon" value="">  -->
+    
 
 </div>
 
@@ -24,16 +22,16 @@
 <div id="mymap" style="width:80%;height: 90%;float: left;"></div>
 
 <script>
-// <!-- 1. Instance -->
+// 1. Instance 
 function GetMap(){
     const map = new Bmap("#mymap");
 
-    //------------------------------------------------------------------------
-    //2. Display Map load, aerial,canvasDark,canvasLight,birdseye,grayscale,streetside
-    //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//2. Display Map load, aerial,canvasDark,canvasLight,birdseye,grayscale,streetside
+//------------------------------------------------------------------------
     map.startMap(35.669190, 139.703205, "canvasLight", 16); //The place is Bellevue.
 
-// お店マークアップ
+// 3.お店マークアップ
     const options = [];
     options[0]={
         "lat":35.669041,
@@ -102,12 +100,15 @@ function GetMap(){
         "show":false
     };
 
-
-    //----------------------------------------------------
-    //4. Switch infoboxs
-    //   infoboxLayers(options, true); //true=one, false=Multiple
-    //----------------------------------------------------
+//----------------------------------------------------
+//4. Switch infoboxs
+//   infoboxLayers(options, true); //true=one, false=Multiple
+//----------------------------------------------------
     map.infoboxLayers(options,true);
+ 
+//----------------------------------------------------
+//5. geolocation
+//----------------------------------------------------
 
     map.geolocation(function(data){
         const lat = data.coords.latitude;
@@ -118,9 +119,6 @@ function GetMap(){
         map.pin(lat,lon,"#ff0000");
     
     });
-    //     $('#lat').val(lat);
-    //     $('#lon').val(lon);
-
 }
 
 </script>
