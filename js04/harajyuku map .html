@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>原宿カフェMAP</title>
+</head>
+<body>
+<div>
+   CAFE MAP<input hidden id="key" value="c9ce461faf2d46fb931121a917db94d8" type="text" size="45">
+    <!-- <input type="button" id="btn" value="串かつを検索"><br> -->
+    <!-- 緯度lat: <input type="text" id="lat" value=""> 
+    経度lon: <input type="text" id="lon" value="">  -->
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnlCFeyPj_75vWlnUlCB72A9pjiidTzXR6PRPWl8lVvVSghHgTYsQO_BKmldKE8P' async defer></script>
+<script src="BmapQuery.js"></script>
+
+<!-- MAP Geolocation -->
+<!-- <h2>MAP:Geolocation</h2> -->
+<style>html,body{height:100%;}body{padding:0;margin:0;}h1{padding:0;margin:0;font-size:50%;}</style>
+<div id="mymap" style="width:80%;height: 90%;float: left;"></div>
+
+<script>
+// <!-- 1. Instance -->
+function GetMap(){
+    const map = new Bmap("#mymap");
+
+    //------------------------------------------------------------------------
+    //2. Display Map load, aerial,canvasDark,canvasLight,birdseye,grayscale,streetside
+    //------------------------------------------------------------------------
+    map.startMap(35.669190, 139.703205, "canvasLight", 16); //The place is Bellevue.
+
+// お店マークアップ
+    const options = [];
+    options[0]={
+        "lat":35.669041,
+        "lon":139.705021,
+        "title":"ダブルトールカフェ",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.42<br><a href="https://tabelog.com/tokyo/A1306/A130601/13017556/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/115256/150x150_square_115256503.jpg" alt=""></a>',
+        "show":false
+    };
+
+
+    options[1]={
+        "lat":35.669394,
+        "lon":139.704168,
+        "title":"珈琲茶館 集",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.08<br><a href="https://tabelog.com/tokyo/A1306/A130601/13045118/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/81634/150x150_square_81634736.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[2]={
+        "lat":35.667964,
+        "lon":139.704653,
+        "title":"ボタニストカフェ",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.24<br><a href="https://tabelog.com/tokyo/A1306/A130601/13211306/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/70991/150x150_square_70991647.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[3]={
+        "lat":35.668169,
+        "lon":139.705946,
+        "title":"TOWER RECORDS CAFE",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐️3.32<br><a href="https://tabelog.com/tokyo/A1306/A130601/13176942/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/34224/150x150_square_34224530.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[4]={
+        "lat":35.668550,
+        "lon":139.706549,
+        "title":"B PORCAFE",
+        "pinColor":"#0067C0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐⭐3.57<br><a href="https://tabelog.com/tokyo/A1306/A130601/13180171/"><img src="https://tblg.k-img.com/restaurant/images/Rvw/36628/150x150_square_36628731.jpg" alt=""></a>',
+        "show":false
+    };
+
+    options[5]={
+        "lat":35.669333,
+        "lon":139.703001,
+        "title":"G's Academy",
+        "pinColor":"#000ff0",
+        "height":300,
+        "width":320,
+        "description": '⭐️⭐️⭐⭐️⭐5.00<br><a href="http://gsacademy.jp/"><img src="https://lh5.googleusercontent.com/p/AF1QipOC9M-ysfqD37fNl_eY9Kp4Eerskxiw1iHI15yM=w408-h272-k-no" alt="" Width="150px"></a>',
+        "show":false
+    };
+
+
+    //----------------------------------------------------
+    //4. Switch infoboxs
+    //   infoboxLayers(options, true); //true=one, false=Multiple
+    //----------------------------------------------------
+    map.infoboxLayers(options,true);
+
+    map.geolocation(function(data){
+        const lat = data.coords.latitude;
+
+        const lon = data.coords.longitude;
+
+        //pin
+        map.pin(lat,lon,"#ff0000");
+    
+    });
+    //     $('#lat').val(lat);
+    //     $('#lon').val(lon);
+
+}
+
+</script>
+</body>
+</html>
